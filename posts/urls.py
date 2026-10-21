@@ -1,4 +1,5 @@
-from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
 from .views import BlogDetailView, BlogListView, BlogCreateView, BlogUpdateView, BlogDeleteView
 
 urlpatterns = [
@@ -7,6 +8,8 @@ urlpatterns = [
     path("post/<int:pk>/edit/", BlogUpdateView.as_view(), name="post_edit"),
     path("post/<int:pk>/delete/", BlogDeleteView.as_view(), name="post_delete"),
 
-    path("", BlogListView.as_view(), name="home")
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/", include("accounts.urls")),
+    path("", BlogListView.as_view(), name="home"),
     
 ]
